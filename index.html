@@ -172,11 +172,11 @@ function get_item (put_ind) {
 
      a1.onsuccess = function() {
 
-           console.log(a1.result.money);
+            console.log(a1.result.money);
 
           //  $("#bb").text(a1.result.money);
 
-         var you = a1.result.money;
+           return a1.result.money;
 
       }
 
@@ -201,7 +201,7 @@ function get_item (put_ind) {
 
 $( document ).ready(function() {
   //  console.log( "ready!" );
-    get_item(45);
+    var you = get_item(45);
     $("#tru").text(you);
 });
 
