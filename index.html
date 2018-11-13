@@ -209,6 +209,13 @@ function get_item (put_ind) {
 
 $( document ).ready(function() {
 
+	if(navigator.onLine){
+  alert('online');
+ } else {
+  alert('offline');
+ }
+	
+	
      get_item(45);
 
 
