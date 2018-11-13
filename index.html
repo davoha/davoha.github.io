@@ -184,6 +184,8 @@ function get_item (put_ind) {
 
           console.log("boyy" + you);
 
+            $("#tru").text(you);
+
       }
 
         tx.oncomplete = function() {
@@ -207,10 +209,9 @@ function get_item (put_ind) {
 
 $( document ).ready(function() {
 
-     you = get_item(45);
-     console.log( "ready!" + you);
-    alert(you);
-    $("#tru").text(you);
+     get_item(45);
+
+
 });
 
 
