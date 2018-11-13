@@ -38,6 +38,8 @@
 
 <script type="text/javascript">
 
+var you = 0;
+
 
 function add_item (index_put) {
 
@@ -176,7 +178,7 @@ function get_item (put_ind) {
 
           //  $("#bb").text(a1.result.money);
 //alert(a1.result.money);
-           return a1.result.money;
+           you = a1.result.money;
 
       }
 
@@ -201,7 +203,7 @@ function get_item (put_ind) {
 
 $( document ).ready(function() {
   //  console.log( "ready!" );
-    var you = get_item(45);
+     you = get_item(45);
     alert(you);
     $("#tru").text(you);
 });
