@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,21 +34,187 @@
 <a href="index.html">main</a>
 <script src="main.js"></script>
 
-  <script type="text/javascript">
 
 
-    $( "#babe" ).click(function() {
-
-         $("#tru").text("jiwijije");
+<script type="text/javascript">
 
 
-       });
+function add_item (index_put) {
 
+
+    window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB ||  window.msIndexedDB;
+
+    if (!window.indexedDB) {
+
+       console.log("No IndexedDB");
+
+    }
+
+
+    let request = window.indexedDB.open("Table", 1),
+        db,
+        tx,
+        store,
+        index;
+
+
+    request.onupgradeneeded = function(e) {
+
+       let db = request.result,
+           store = db.createObjectStore("Table", {keyPath: "id"}),
+           index = store.createIndex("money", "money", {unique: false});
+
+    };
+
+
+
+
+    request.onerror = function(e) {
+      console.log("ERROR" + e.target.errorCode);
+    }
+
+
+
+    request.onsuccess = function(e) {
+
+        db = request.result;
+        tx = db.transaction("Table", "readwrite");
+        store = tx.objectStore("Table");
+        index = store.index("money");
+
+
+        db.onerror = function(e) {
+          console.log("ERROR" + e.target.errorCode);
+        }
+
+
+        store.put({id: index_put, money: "GHS", gender: "male"});
+
+        //let a1 = store.get(2);
+
+  /*    a1.onsuccess = function() {
+
+            console.log(a1.result.money);
+
+            $("#bb").text(a1.result.money);
+
+      }  */
+
+        tx.oncomplete = function() {
+
+              db.close();
+
+        }
+
+
+    };
+
+}
+
+
+
+
+
+
+
+function get_item (put_ind) {
+
+
+    window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB ||  window.msIndexedDB;
+
+    if (!window.indexedDB) {
+
+       console.log("No IndexedDB");
+
+    }
+
+
+    let request = window.indexedDB.open("Table", 1),
+        db,
+        tx,
+        store,
+        index;
+
+
+    request.onupgradeneeded = function(e) {
+
+       let db = request.result,
+           store = db.createObjectStore("Table", {keyPath: "id"}),
+           index = store.createIndex("money", "money", {unique: false});
+
+    };
+
+
+
+
+    request.onerror = function(e) {
+      console.log("ERROR" + e.target.errorCode);
+    }
+
+
+
+    request.onsuccess = function(e) {
+
+        db = request.result;
+        tx = db.transaction("Table", "readwrite");
+        store = tx.objectStore("Table");
+        index = store.index("money");
+
+
+        db.onerror = function(e) {
+          console.log("ERROR" + e.target.errorCode);
+        }
+
+
+      //  store.put({id: index_put, money: "GHS", gender: "male"});
+
+        let a1 = store.get(put_ind);
+
+     a1.onsuccess = function() {
+
+          //  console.log(a1.result.money);
+
+          //  $("#bb").text(a1.result.money);
+
+          you = a1.result.money;
+
+      }
+
+        tx.oncomplete = function() {
+
+              db.close();
+
+        }
+
+
+    };
+
+}
+
+
+
+
+
+
+
+
+
+$( document ).ready(function() {
+  //  console.log( "ready!" );
+    get_item(45);
+    $("#tru").text(you);
+});
+
+
+
+
+
+$( "#babe" ).click(function() {
+     $("#tru").text("jiwijije");
+     add_item(45);
+});
 
 
 </script>
-
-
 </body>
 </html>
-
