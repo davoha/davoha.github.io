@@ -209,14 +209,14 @@ function get_item (put_ind) {
 
 $( document ).ready(function() {
 
-	if(navigator.onLine){
+  if(navigator.onLine){
   alert('online');
  } else {
-  alert('offline');
+  //alert('offline');
+   get_item(45);
  }
-	
-	
-     get_item(45);
+
+
 
 
 });
